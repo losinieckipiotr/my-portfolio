@@ -1,0 +1,70 @@
+---
+const links = [
+	{ label: 'Work', href: '/work/' },
+	{ label: 'About', href: '/about/' },
+	{ label: 'Test', href: '/test/' }
+] as const;
+
+interface Props {
+	footer?: boolean;
+}
+
+const { footer = false } = Astro.props;
+
+---
+<ul class:list={[ { footer } ]}>
+  {
+    links.map(({ label, href }) => (
+      <li>
+        <a
+          href={href}
+          aria-current={Astro.url.pathname === href}
+        >
+          {label}
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  ul {
+		display: flex;
+		width: 100%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    justify-content: center;
+    flex-direction: column;
+		gap: 12px;
+
+		margin: 0;
+		padding: 0;
+		font-size: var(--text-2xl);
+		list-style: none;
+
+    &.footer {
+      flex-direction: row;
+      font-size: var(--text-lg);
+    }
+	}
+
+	li {
+		display: block;
+		text-align: center;
+	}
+
+  a {
+		font-family: var(--font-poppins);
+		font-weight: 300;
+		font-style: normal;
+		text-decoration: none;
+		text-align: center;
+	}
+
+	a[aria-current] {
+		background-image: linear-gradient(currentColor,currentColor);
+    background-repeat: repeat-x;
+    background-size: 1px 1px;
+    background-position: 0 84%;
+	}
+</style>

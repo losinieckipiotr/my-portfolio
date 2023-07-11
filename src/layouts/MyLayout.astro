@@ -1,0 +1,36 @@
+---
+// Learn about using Astro layouts:
+// https://docs.astro.build/en/core-concepts/layouts/
+
+// Component Imports
+import MyHead from '../components/MyHead.astro';
+import MyNav from '../components/MyNav.astro';
+import MyFooter from '../components/MyFooter.astro';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<MyHead title={title} description={description} />
+	</head>
+	<body>
+		<div class="layout">
+			<MyNav />
+			<slot />
+			<MyFooter />
+		</div>
+	</body>
+</html>
+
+<style>
+	.layout {
+		display: flex;
+		flex-direction: column;
+	}
+</style>

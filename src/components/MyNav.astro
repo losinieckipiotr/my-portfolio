@@ -1,0 +1,98 @@
+---
+import Icon from './Icon.astro';
+import SocialLinks from './SocialLinks.astro';
+import LinkList from './LinkList.astro'
+
+---
+<nav>
+	<div class="navbar">
+		<a href="/" class="home-link">Piotr Łosiniecki</a>
+		<div id="menu-button">
+			<button aria-expanded="false">
+				<span id="sr-txt" class="sr-only">Menu</span>
+				<Icon icon="list" />
+			</button>
+		</div>
+	</div>
+	<div id="menu-content" hidden>
+		<LinkList />
+		<SocialLinks />
+	</div>
+</nav>
+
+<script>
+	import { iconPaths } from './IconPaths';
+
+	const listIcon = iconPaths['list'];
+	const closeIcon = iconPaths['close'];
+
+	const btn = document.querySelector('button')!;
+	const menu = document.getElementById('menu-content')!;
+	const srTxt = document.getElementById('sr-txt')!;
+	const iconG = document.querySelector('g')!;
+
+	const setExpanded = (expand: boolean) => {
+		btn.setAttribute('aria-expanded', expand ? 'true' : 'false');
+		srTxt.innerText = expand ? "Zamknij" : "Menu";
+		menu.hidden = !expand;
+
+		if (expand) {
+			iconG.innerHTML = closeIcon;
+			document.body.style.overflow = 'hidden';
+		} else {
+			iconG.innerHTML = listIcon;
+			document.body.style.overflow = '';
+		}
+	};
+	btn.addEventListener('click', () => setExpanded(menu.hidden));
+</script>
+
+<style>
+	.navbar {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: 32px;
+	}
+
+	.home-link {
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+		text-decoration: none;
+		font-family: var(--font-acumin-pro);
+		font-weight: 400;
+		font-style: normal;
+	}
+
+	#menu-button {
+		display: flex;
+		align-items: center;
+	}
+
+	#menu-button button {
+		font-size: 26px;
+		padding: 0;
+		margin: 0;
+		border: 0;
+		background-color: var(--gray-999);
+		cursor: pointer;
+	}
+
+	#menu-content {
+		position: absolute;
+		top: var(--navbar-height);
+		left: 0;
+		right: 0;
+		height: calc(100vh - var(--navbar-height));
+		z-index: 1;
+		display: flex;
+		flex-grow: 1;
+		justify-content: flex-start;
+		flex-direction: column;
+		background-color: var(--gray-999);
+	}
+
+	#menu-content[hidden] {
+		display: none;
+	}
+</style>

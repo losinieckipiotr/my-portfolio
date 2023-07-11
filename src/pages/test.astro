@@ -1,0 +1,98 @@
+---
+import MyLayout from '../layouts/MyLayout.astro';
+---
+
+<MyLayout
+	title="Piotr Łosiniecki: Janusz Soft"
+	description="Strona firmowa Janusz Soft"
+>
+	<section>
+		<h2>About</h2>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+			incididunt ut labore et dolore magna aliqua. Nunc mattis enim ut tellus elementum
+			sagittis vitae et.
+			Vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Et tortor at
+			risus viverra adipiscing at in tellus integer.
+			Integer vitae justo eget magna. Elit duis tristique sollicitudin nibh sit amet
+			commodo. Nunc scelerisque viverra mauris in aliquam sem fringilla.
+		</p>
+		<p>
+			Et pharetra pharetra massa massa ultricies mi quis hendrerit. Nisi porta lorem
+			mollis aliquam ut porttitor leo a. Euismod elementum nisi quis eleifend quam
+			adipiscing vitae proin. Sed libero enim sed faucibus turpis. Penatibus et magnis
+			dis parturient montes nascetur ridiculus mus mauris. Vestibulum morbi blandit
+			cursus risus at ultrices. Tristique magna sit amet purus gravida quis.
+		</p>
+		<p>
+			Ultrices tincidunt arcu non sodales neque sodales ut. Sed enim ut sem viverra
+			aliquet eget sit amet. Lacus luctus accumsan tortor posuere ac ut consequat semper
+			viverra. Viverra accumsan in nisl nisi scelerisque eu ultrices. In massa tempor nec
+			feugiat nisl pretium fusce.
+		</p>
+	</section>
+	<section class="contact-section">
+		<h2 class="mg-bt-16">Contact</h2>
+		<p>losinieckipiotr@gmail.com</p>
+		<p>+48 669 778 287</p>
+	</section>
+	<section class="follow-section">
+		<h2 class="mg-bt-16">Follow</h2>
+		<div class="follow-links">
+			<a href="https://www.instagram.com">Instagram</a>
+			<a href="https://www.linkedin.com">LinkedIn</a>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	section {
+		padding: 32px;
+	}
+
+	h2 {
+		font-family: var(--font-poppins);
+		font-size: var(--text-base);
+		font-weight: 300;
+		line-height: calc(1.2*var(--text-base));
+	}
+
+	p {
+		margin-top: 32px;
+		margin-bottom: 32px;
+		font-family: var(--font-acumin-pro);
+		font-size: 24px;
+		font-size: var(--text-md);
+		font-weight: 500;
+		line-height: calc(1.5*var(--text-md));
+	}
+
+	.mg-bt-16 {
+		margin-bottom: 16px;
+	}
+
+	.contact-section {
+		padding-top: 0;
+
+		& p {
+			font-family: var(--font-poppins);
+			font-size: var(--text-base);
+			font-weight: 300;
+			line-height: calc(1.2*var(--text-base));
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+
+	.follow-links {
+		display: flex;
+		flex-direction: column;
+
+		& a {
+			font-family: var(--font-poppins);
+			font-size: var(--text-base);
+			font-weight: 300;
+			line-height: calc(1.5*var(--text-base));
+		}
+	}
+</style>
