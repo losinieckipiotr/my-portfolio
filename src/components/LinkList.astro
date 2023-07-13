@@ -7,12 +7,13 @@ const links = [
 
 interface Props {
 	footer?: boolean;
+  header?: boolean;
 }
 
-const { footer = false } = Astro.props;
+const { footer, header } = Astro.props;
 
 ---
-<ul class:list={[ { footer } ]}>
+<ul class:list={[ { footer, header } ]}>
   {
     links.map(({ label, href }) => (
       <li>
@@ -35,7 +36,7 @@ const { footer = false } = Astro.props;
     flex-shrink: 0;
     justify-content: center;
     flex-direction: column;
-		gap: 12px;
+		gap: var(--text-md);
 
 		margin: 0;
 		padding: 0;
@@ -45,6 +46,13 @@ const { footer = false } = Astro.props;
     &.footer {
       flex-direction: row;
       font-size: var(--text-lg);
+    }
+
+    &.header {
+      flex-direction: row;
+      font-size: var(--text-base);
+      flex-grow: unset;
+      flex-shrink: unset;
     }
 	}
 

@@ -6,8 +6,16 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 	{ label: 'Instagram', href: 'https://www.instagram.com', icon: 'instagram-logo' },
 	{ label: 'LinkedIn', href: 'https://www.linkedin.com', icon: 'linkedin-logo' }
 ];
+
+interface Props {
+  header?: boolean;
+  footer?: boolean;
+}
+
+const { header, footer } = Astro.props;
+
 ---
-<div>
+<div class:list={[ { header, footer } ]}>
   {
     iconLinks.map(({ href, icon, label }) => (
       <a href={href}>
@@ -19,14 +27,20 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 </div>
 
 <style>
-  div {
+  div.footer {
     display: flex;
-		gap: 16px;
-		padding: 24px;
+    gap: var(--text-base);
+		padding: var(--text-lg);
 		font-size: var(--text-xl);
     align-items: center;
     justify-content: center;
     flex-grow: 0;
     flex-shrink: 1;
 	}
+
+  div.header {
+    display: flex;
+    font-size: var(--text-md);
+    gap: var(--text-md);
+  }
 </style>

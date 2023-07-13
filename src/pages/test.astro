@@ -111,8 +111,18 @@ import MyLayout from '../layouts/MyLayout.astro';
 			grid-template-areas:
 				"about contact"
 				"about follow";
-			column-gap: var(--text-lg);
+			column-gap: var(--text-2xl);
 			row-gap: var(--text-lg);
 		}
+
+		.contact h2 {
+			margin-bottom: var(--text-xl);
+		}
+
+		/** TODO: dać taką szerokość jak linki w nagłówku? */
+		/* .contact,
+		.follow {
+			padding-right: 32px;
+		} */
 	}
 </style>

@@ -52,4 +52,10 @@ const { title, description } = Astro.props;
 	.footer {
 		grid-area: footer;
 	}
+
+	@media (min-width: 600px) {
+		.layout {
+			row-gap: var(--text-5xl);
+		}
+	}
 </style>

@@ -8,16 +8,20 @@ const navbarHeight = "109px";
 <nav>
 	<div class="navbar">
 		<a href="/" class="home-link">Piotr Łosiniecki</a>
-		<div id="menu-button">
-			<button aria-expanded="false">
-				<span id="sr-txt" class="sr-only">Menu</span>
+		<div class="menu">
+			<button class="menu-button" aria-expanded="false">
+				<span class="sr-only">Menu</span>
 				<Icon icon="list" />
 			</button>
+			<div class="content" hidden>
+				<LinkList />
+				<SocialLinks footer />
+			</div>
 		</div>
-	</div>
-	<div id="menu-content" hidden>
-		<LinkList />
-		<SocialLinks />
+		<div class="navbar-links">
+			<LinkList header />
+			<SocialLinks header />
+		</div>
 	</div>
 </nav>
 
@@ -27,15 +31,17 @@ const navbarHeight = "109px";
 	const listIcon = iconPaths['list'];
 	const closeIcon = iconPaths['close'];
 
-	const btn = document.querySelector('button')!;
-	const menu = document.getElementById('menu-content')!;
-	const srTxt = document.getElementById('sr-txt')!;
+	const btn = document.querySelector('.menu-button')!;
+	const content = document.querySelector('.menu .content')! as HTMLElement;
+	const srTxt = document.querySelector('.menu > button .sr-only') as HTMLElement;
 	const iconG = document.querySelector('g')!;
 
-	const setExpanded = (expand: boolean) => {
+	btn.addEventListener('click', () => {
+		const expand = content.hidden
+
 		btn.setAttribute('aria-expanded', expand ? 'true' : 'false');
 		srTxt.innerText = expand ? "Zamknij" : "Menu";
-		menu.hidden = !expand;
+		content.hidden = !expand;
 
 		if (expand) {
 			iconG.innerHTML = closeIcon;
@@ -44,11 +50,10 @@ const navbarHeight = "109px";
 			iconG.innerHTML = listIcon;
 			document.body.style.overflow = '';
 		}
-	};
-	btn.addEventListener('click', () => setExpanded(menu.hidden));
+	});
 </script>
 
-<style define:vars={{ navbarHeight }}>
+<style define:vars={{ 'navbar-height': navbarHeight }}>
 	.navbar {
 		display: flex;
 		flex-direction: row;
@@ -64,13 +69,13 @@ const navbarHeight = "109px";
 		font-style: normal;
 	}
 
-	#menu-button {
+	.menu {
 		display: flex;
 		align-items: center;
 	}
 
-	#menu-button button {
-		font-size: 26px;
+	.menu-button {
+		font-size: var(--text-xl);
 		padding: 0;
 		margin: 0;
 		border: 0;
@@ -78,12 +83,12 @@ const navbarHeight = "109px";
 		cursor: pointer;
 	}
 
-	#menu-content {
+	.content {
 		position: absolute;
-		top: var(--navbarHeight);
+		top: var(--navbar-height);
 		left: 0;
 		right: 0;
-		height: calc(100vh - var(--navbarHeight));
+		height: calc(100vh - var(--navbar-height));
 		z-index: 1;
 		display: flex;
 		flex-grow: 1;
@@ -92,7 +97,28 @@ const navbarHeight = "109px";
 		background-color: var(--gray-999);
 	}
 
-	#menu-content[hidden] {
+	.content[hidden] {
 		display: none;
 	}
+
+	.navbar-links {
+		display: none;
+	}
+
+	@media (min-width: 600px) {
+		.navbar {
+			align-items: center;
+		}
+
+		.menu {
+			display: none;
+		}
+
+		.navbar-links {
+			display: flex;
+			gap: var(--text-md);
+		}
+	}
+
+
 </style>
