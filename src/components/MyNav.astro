@@ -3,6 +3,7 @@ import Icon from './Icon.astro';
 import SocialLinks from './SocialLinks.astro';
 import LinkList from './LinkList.astro'
 
+const navbarHeight = "109px";
 ---
 <nav>
 	<div class="navbar">
@@ -47,7 +48,7 @@ import LinkList from './LinkList.astro'
 	btn.addEventListener('click', () => setExpanded(menu.hidden));
 </script>
 
-<style>
+<style define:vars={{ navbarHeight }}>
 	.navbar {
 		display: flex;
 		flex-direction: row;
@@ -79,10 +80,10 @@ import LinkList from './LinkList.astro'
 
 	#menu-content {
 		position: absolute;
-		top: var(--navbar-height);
+		top: var(--navbarHeight);
 		left: 0;
 		right: 0;
-		height: calc(100vh - var(--navbar-height));
+		height: calc(100vh - var(--navbarHeight));
 		z-index: 1;
 		display: flex;
 		flex-grow: 1;
