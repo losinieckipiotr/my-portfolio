@@ -21,8 +21,8 @@ const { title, description } = Astro.props;
 	</head>
 	<body>
 		<div class="layout">
-			<MyNav />
-			<slot />
+			<MyNav class="header" />
+			<div class="content"><slot /></div>
 			<MyFooter />
 		</div>
 	</body>
@@ -30,7 +30,26 @@ const { title, description } = Astro.props;
 
 <style>
 	.layout {
-		display: flex;
-		flex-direction: column;
+		display: grid;
+		grid-template-columns: auto;
+		grid-template-rows: auto;
+		grid-template-areas:
+			"header"
+			"content"
+			"footer";
+		row-gap: 32px;
+		padding: 32px;
+	}
+
+	.header {
+		grid-area: header;
+	}
+
+	.content {
+		grid-area: content;
+	}
+
+	.footer {
+		grid-area: footer;
 	}
 </style>
