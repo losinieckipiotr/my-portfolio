@@ -105,7 +105,6 @@ import MyLayout from '../layouts/MyLayout.astro';
 
 	@media (min-width: 600px) {
 		.layout {
-			display: grid;
 			grid-template-columns: auto auto;
 			grid-template-rows: auto 1fr;
 			grid-template-areas:
@@ -119,10 +118,21 @@ import MyLayout from '../layouts/MyLayout.astro';
 			margin-bottom: var(--text-xl);
 		}
 
-		/** TODO: dać taką szerokość jak linki w nagłówku? */
-		/* .contact,
-		.follow {
-			padding-right: 32px;
-		} */
+		@media (min-width: 1280px) {
+			.layout {
+				grid-template-areas:
+				". about about about about about about about about about contact ."
+				". about about about about about about about about about follow .";
+				grid-template-columns: repeat(12, 1fr);
+				column-gap: var(--text-xl);
+			}
+
+			.about p {
+				margin-top: var(--text-2xl);
+				margin-bottom: var(--text-2xl);
+
+				font-size: var(--text-lg);
+			}
+		}
 	}
 </style>
