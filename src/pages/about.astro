@@ -1,120 +1,138 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-
-import ContactCTA from '../components/ContactCTA.astro';
-import Hero from '../components/Hero.astro';
+import MyLayout from '../layouts/MyLayout.astro';
 ---
 
-<BaseLayout title="About | Jeanine White" description="About Jeanine White Lorem Ipsum">
-	<div class="stack gap-20">
-		<main class="wrapper about">
-			<Hero
-				title="About"
-				tagline="Thanks for stopping by. Read below to learn more about myself and my background."
-			>
-				<img
-					width="1553"
-					height="873"
-					src="/assets/at-work.jpg"
-					alt="Jeanine White at work with a colleague"
-				/>
-			</Hero>
-
-			<section>
-				<h2 class="section-title">Background</h2>
-				<div class="content">
-					<p>
-						Lorem ipsum dolor sit amet, <a href="https://astro.build/">Astro</a> makes people happy.
-						Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin nibh nisl condimentum
-						id venenatis a condimentum vitae. Dapibus ultrices in iaculis nunc. Arcu odio ut sem nulla
-						pharetra diam sit amet. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare.
-					</p>
-					<p>
-						Arcu dui vivamus arcu felis bibendum ut tristique et egestas. Eget gravida cum sociis
-						natoque penatibus. Cras fermentum odio eu feugiat pretium nibh. Proin nibh nisl
-						condimentum id venenatis. Porta nibh venenatis cras sed felis eget velit. Id diam vel
-						quam elementum pulvinar etiam non.
-					</p>
-					<p>
-						Ultrices tincidunt arcu non sodales neque sodales ut. Sed enim ut sem viverra aliquet
-						eget sit amet. Lacus luctus accumsan tortor posuere ac ut consequat semper viverra.
-						Viverra accumsan in nisl nisi scelerisque eu ultrices. In massa tempor nec feugiat nisl
-						pretium fusce.
-					</p>
-				</div>
-			</section>
-			<section>
-				<h2 class="section-title">Education</h2>
-				<div class="content">
-					<p>Corporis voluptates tenetur laudantium.</p>
-				</div>
-			</section>
-			<section>
-				<h2 class="section-title">Skills</h2>
-				<div class="content">
-					<p>officia unde omnis</p>
-				</div>
-			</section>
-		</main>
-
-		<ContactCTA />
+<MyLayout
+	title="Piotr Łosiniecki: Janusz Soft"
+	description="Strona firmowa Janusz Soft"
+>
+	<div class="layout">
+		<section class="about">
+			<h2>About</h2>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+				incididunt ut labore et dolore magna aliqua. Nunc mattis enim ut tellus elementum
+				sagittis vitae et.
+				Vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Et tortor at
+				risus viverra adipiscing at in tellus integer.
+				Integer vitae justo eget magna. Elit duis tristique sollicitudin nibh sit amet
+				commodo. Nunc scelerisque viverra mauris in aliquam sem fringilla.
+			</p>
+			<p>
+				Et pharetra pharetra massa massa ultricies mi quis hendrerit. Nisi porta lorem
+				mollis aliquam ut porttitor leo a. Euismod elementum nisi quis eleifend quam
+				adipiscing vitae proin. Sed libero enim sed faucibus turpis. Penatibus et magnis
+				dis parturient montes nascetur ridiculus mus mauris. Vestibulum morbi blandit
+				cursus risus at ultrices. Tristique magna sit amet purus gravida quis.
+			</p>
+		</section>
+		<section class="contact">
+			<h2>Contact</h2>
+			<p>losinieckipiotr@gmail.com</p>
+			<p>+48 669 778 287</p>
+		</section>
+		<section class="follow">
+			<h2>Follow</h2>
+			<div class="links">
+				<a href="https://www.instagram.com">Instagram</a>
+				<a href="https://www.linkedin.com">LinkedIn</a>
+			</div>
+		</section>
 	</div>
 </BaseLayout>
 
 <style>
+	.layout {
+		display: grid;
+		grid-template-columns: auto;
+		grid-template-rows: auto;
+		grid-template-areas:
+			"about"
+			"contact"
+			"follow";
+	}
+
 	.about {
-		display: flex;
-		flex-direction: column;
-		gap: 3.5rem;
+		grid-area: about;
+
+		& p {
+			margin-top: var(--text-xl);
+			margin-bottom: var(--text-xl);
+
+			font-family: var(--font-acumin-pro);
+			font-size: var(--text-md);
+			font-weight: 500;
+			line-height: calc(1.5*var(--text-md));
+		}
 	}
 
-	img {
-		margin-top: 1.5rem;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
+	.contact {
+		grid-area: contact;
+
+		padding-top: 0;
+
+		& p {
+			font-family: var(--font-poppins);
+			font-size: var(--text-base);
+			font-weight: 300;
+			line-height: calc(1.2*var(--text-base));
+		}
 	}
 
-	section {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		color: var(--gray-200);
+	.follow {
+		grid-area: follow;
+
+		& .links {
+			display: flex;
+			flex-direction: column;
+
+			& a {
+				font-family: var(--font-poppins);
+				font-size: var(--text-base);
+				font-weight: 300;
+				line-height: calc(1.5*var(--text-base));
+			}
+		}
 	}
 
-	.section-title {
-		grid-column-start: 1;
-		font-size: var(--text-xl);
-		color: var(--gray-0);
+	h2 {
+		font-family: var(--font-poppins);
+		font-size: var(--text-base);
+		font-weight: 300;
+		line-height: calc(1.2*var(--text-base));
+		margin-bottom: var(--text-base);
 	}
 
-	.content {
-		grid-column: 2 / 4;
-	}
-
-	.content :global(a) {
-		text-decoration: 1px solid underline transparent;
-		text-underline-offset: 0.25em;
-		transition: text-decoration-color var(--theme-transition);
-	}
-
-	.content :global(a:hover),
-	.content :global(a:focus) {
-		text-decoration-color: currentColor;
-	}
-
-	@media (min-width: 50em) {
-		.about {
-			display: grid;
-			grid-template-columns: 1fr 60% 1fr;
+	@media (min-width: 600px) {
+		.layout {
+			grid-template-columns: auto auto;
+			grid-template-rows: auto 1fr;
+			grid-template-areas:
+				"about contact"
+				"about follow";
+			column-gap: var(--text-xl);
+			row-gap: var(--text-lg);
 		}
 
-		.about > :global(:first-child) {
-			grid-column-start: 2;
+		.contact h2 {
+			margin-bottom: var(--text-xl);
 		}
 
-		section {
-			display: contents;
-			font-size: var(--text-lg);
+		@media (min-width: 1280px) {
+			.layout {
+				grid-template-areas:
+				". about about about about about about about about about contact ."
+				". about about about about about about about about about follow .";
+				grid-template-columns: repeat(12, 1fr);
+				column-gap: var(--text-xl);
+			}
+
+			.about p {
+				margin-top: var(--text-2xl);
+				margin-bottom: var(--text-2xl);
+
+				font-size: var(--text-lg);
+			}
 		}
 	}
 </style>
