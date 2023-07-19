@@ -1,8 +1,6 @@
 ---
 import MyLayout from '../layouts/MyLayout.astro';
-const arr: number[] = new Array(9);
-arr.fill(0)
-const srcs = arr.map((_, i) => `assets/minatures/${++i}.jpg`);
+import { works } from '../components/works'
 ---
 
 <MyLayout
@@ -10,10 +8,19 @@ const srcs = arr.map((_, i) => `assets/minatures/${++i}.jpg`);
 	description="Strona firmowa Janusz Soft"
 >
 	<div class="layout">
-		{srcs.map((src) =>
-			<div class="container">
-				<img src={src} alt={''} loading="lazy" decoding="async" />
-			</div>
+		{works.map((work) =>
+			<a
+				href={work.href}
+				class="container"
+			>
+				<img
+					src={work.src}
+					alt={work.alt}
+					loading="lazy"
+					decoding="async"
+				/>
+				<h2>{work.title}</h2>
+			</a>
 		)}
 	</div>
 </BaseLayout>
@@ -44,5 +51,55 @@ const srcs = arr.map((_, i) => `assets/minatures/${++i}.jpg`);
 		aspect-ratio: 1 / 1;
 		max-height: 100%;
   	width: 100%;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		transition: opacity ease 200ms;
+
+		text-decoration: none;
+		text-align: center;
+
+		& h2 {
+			/* font-size: 4.5vw; */
+			/* TODO: use clamp */
+			font-size: var(--text-lg);
+			color: var(--gray-0);
+			font-family: var(--font-acumin-pro);
+			font-weight: 400;
+			font-style: normal;
+			line-height: 1.4;
+			margin-top: var(--text-sm);
+			margin-bottom: var(--text-sm);
+		}
+	}
+
+	.container:hover {
+		opacity: 0.7;
+	}
+
+	@media (min-width: 600px) {
+		.layout {
+			display: grid;
+			grid-template-columns: repeat(3,minmax(0,1fr));
+			grid-column-gap: 40px;
+			grid-row-gap: 40px;
+			grid-auto-rows: min-content;
+		}
+
+		.container h2 {
+			/* font-size: 3vw; */
+			/* TODO: use clamp */
+			font-size: var(--text-md);
+		}
+	}
+
+	@media (min-width: 1280px) {
+		.container h2 {
+			/* TODO: use clamp */
+			font-size: var(--text-lg);
+		}
 	}
 </style>
