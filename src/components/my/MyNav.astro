@@ -1,13 +1,13 @@
 ---
-import Icon from './Icon.astro';
-import SocialLinks from './SocialLinks.astro';
+import Icon from '../Icon.astro';
+import SocialLinks from '../SocialLinks.astro';
 import LinkList from './LinkList.astro'
 
 const navbarHeight = "109px";
 ---
 <nav>
 	<div class="navbar">
-		<a href="/mywork" class="home-link">Piotr Łosiniecki</a>
+		<a href="/" class="home-link">Piotr Łosiniecki</a>
 		<div class="menu">
 			<button class="menu-button" aria-expanded="false">
 				<span class="sr-only">Menu</span>
@@ -26,7 +26,7 @@ const navbarHeight = "109px";
 </nav>
 
 <script>
-	import { iconPaths } from './IconPaths';
+	import { iconPaths } from '../IconPaths';
 
 	const listIcon = iconPaths['list'];
 	const closeIcon = iconPaths['close'];
