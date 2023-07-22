@@ -9,7 +9,7 @@ const navbarHeight = "109px";
 	<div class="navbar">
 		<a href="/my-portfolio/" class="home-link">Piotr Łosiniecki</a>
 		<div class="menu">
-			<button class="menu-button" aria-expanded="false">
+			<button aria-expanded="false">
 				<span class="sr-only">Menu</span>
 				<Icon icon="list" />
 			</button>
@@ -31,7 +31,7 @@ const navbarHeight = "109px";
 	const listIcon = iconPaths['list'];
 	const closeIcon = iconPaths['close'];
 
-	const btn = document.querySelector('.menu-button')!;
+	const btn = document.querySelector('.menu button')!;
 	const content = document.querySelector('.menu .content')! as HTMLElement;
 	const srTxt = document.querySelector('.menu > button .sr-only') as HTMLElement;
 	const iconG = document.querySelector('g')!;
@@ -74,7 +74,7 @@ const navbarHeight = "109px";
 		align-items: center;
 	}
 
-	.menu-button {
+	.menu button {
 		font-size: var(--text-xl);
 		padding: 0;
 		margin: 0;
@@ -95,10 +95,18 @@ const navbarHeight = "109px";
 		justify-content: flex-start;
 		flex-direction: column;
 		background-color: var(--gray-999);
+		opacity: 1;
+
+		transition:
+			visibility 0s,
+			left 250ms cubic-bezier(.4,0,.2,1),
+			opacity 250ms cubic-bezier(.4,0,.2,1);
 	}
 
 	.content[hidden] {
-		display: none;
+		visibility: hidden;
+		left: -100vw;
+		opacity: 0;
 	}
 
 	.navbar-links {
