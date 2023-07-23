@@ -1,5 +1,6 @@
 ---
 import MyLayout from '../../layouts/MyLayout.astro';
+import { getSrcAttr } from '../../components/my/srcAttr.helper';
 
 const squareSpaceUrl = 'https://images.squarespace-cdn.com/content/v1/5cdc8db64d546e01b837cea4/'
 
@@ -8,22 +9,6 @@ const images = [
 	squareSpaceUrl + '1562102954919-4D1IRIMFNWQFO1G0F37Q/66.jpg',
 	squareSpaceUrl + '1562102954838-L03XRKMVYF8Z59TTW66S/67.jpg'
 ]
-
-const sizes = [500, 750, 1000, 1500, 2500]
-
-const getUrlWithSize = (url: string, size: number) => `${url}?format=${size}w`
-const getSrcSetItem = (urlWithSize: string, size: number) => `${urlWithSize} ${size}w`
-const getSrcSet = (srcSetItems: string[]) => srcSetItems.join(', ')
-
-const getSrcAttr = (url: string) => {
-	const srcItems = sizes
-	.map((size) => {
-		const urlWithSize = getUrlWithSize(url, size)
-		return getSrcSetItem(urlWithSize, size)
-	})
-	return getSrcSet(srcItems)
-}
-
 ---
 
 <MyLayout

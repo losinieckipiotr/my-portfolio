@@ -1,11 +1,64 @@
-export const works = [
-	{ title: 'Pagóry', href: '/my-portfolio/mywork/peaks', src: 'assets/minatures/1.jpg', alt: '' },
-	{ title: 'Piaseczki', href: '/my-portfolio/mywork/coast', src: 'assets/minatures/2.jpg', alt: '' },
-	{ title: 'Dziki źwież', href: '/my-portfolio/mywork/wildlife', src: 'assets/minatures/3.jpg', alt: '' },
-	{ title: 'Parawany', href: '/my-portfolio/mywork/seafaring', src: 'assets/minatures/4.jpg', alt: '' },
-	{ title: 'Dowód że ziemia jest płaska', href: '/my-portfolio/mywork/horizon', src: 'assets/minatures/5.jpg', alt: '' },
-	{ title: 'Rodzinne strony James\'a Bonda', href: '/my-portfolio/mywork/landscape', src: 'assets/minatures/6.jpg', alt: '' },
-	{ title: 'Planeta z Interstellar', href: '/my-portfolio/mywork/crystals', src: 'assets/minatures/7.jpg', alt: '' },
-	{ title: 'Schody do wody', href: '/my-portfolio/mywork/wharf', src: 'assets/minatures/8.jpg', alt: '' },
-	{ title: 'Łoweczki', href: '/my-portfolio/mywork/dock', src: 'assets/minatures/9.jpg', alt: '' }
-]
+import { getSrcAttr } from "./srcAttr.helper";
+
+const squareSpaceUrl = 'https://images.squarespace-cdn.com/content/v1/5cdc8db64d546e01b837cea4/';
+
+const peaks = '1562102954840-OPQ2S3VR9JDZS2XLMAAT/65.jpg';
+const coast = '1562710303726-HN4N2S110UN9FFW6SQ9K/1.jpg';
+const wildlife = '1562710337910-ETNNKGNBU2IPDFJFZAC7/3.jpg';
+const seafaring = '1562710379262-HJY43PPFCTN2331DQ67P/73.jpg';
+const horizon = '1562710947533-PD7S2GHDGL0WJXMOCTUR/download+%2811%29.jpeg';
+const landscape = '1562711000974-0Z9GVJLOW0FAYD6EOKNL/download.jpeg';
+const crystals = '1562711028613-KPB6JJZAWCM4GARBNC9E/77.jpg';
+const wharf = '1562711143537-Y34EGHLSFXS8JGD7ONO2/47.jpg';
+const dock = '1562711110689-CTJYO7N1U2Z5B96KOGUU/36.jpg';
+
+class Work {
+	title: string;
+	href: string;
+	srcset: string;
+
+	constructor (title: string, path: string, imgUrl: string) {
+		this.title = title;
+		this.href = '/my-portfolio/mywork/' + path
+		this.srcset = getSrcAttr(squareSpaceUrl + imgUrl, [500, 750])
+	}
+}
+
+interface ImgData {
+	title: string;
+	href: string;
+	srcset?: string;
+	alt?: string;
+}
+
+class WroksBuilder {
+
+	private works: ImgData[] = [];
+
+	addWork(img: Work) {
+		this.works.push({
+			alt: '',
+			...img
+		})
+
+		return this
+	}
+
+	build() {
+		return this.works;
+	}
+}
+
+const builder = new WroksBuilder();
+
+export const works = builder
+	.addWork(new Work('Pagóry', 'peaks', peaks))
+	.addWork(new Work('Piaseczki', 'coast', coast))
+	.addWork(new Work('Dziki źwież', 'wildlife', wildlife))
+	.addWork(new Work('Parawany', 'seafaring', seafaring))
+	.addWork(new Work('Dowód że ziemia jest płaska', 'horizon', horizon))
+	.addWork(new Work('Rodzinne strony James\'a Bonda', 'landscape', landscape))
+	.addWork(new Work('Planeta z Interstellar', 'crystals', crystals))
+	.addWork(new Work('Schody do wody', 'wharf', wharf))
+	.addWork(new Work('Łoweczki', 'dock', dock))
+	.build()

@@ -14,8 +14,9 @@ import { works } from '../components/my/works'
 				class="container"
 			>
 				<img
-					src={work.src}
+					srcset={work.srcset}
 					alt={work.alt}
+					sizes="(max-width: 2400px) 500px, 750px"
 					loading="lazy"
 					decoding="async"
 				/>
