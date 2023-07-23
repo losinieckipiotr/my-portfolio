@@ -1,14 +1,76 @@
 ---
 import MyLayout from '../../layouts/MyLayout.astro';
+
+const squareSpaceUrl = 'https://images.squarespace-cdn.com/content/v1/5cdc8db64d546e01b837cea4/'
+
+const images = [
+	squareSpaceUrl + '1562102954840-OPQ2S3VR9JDZS2XLMAAT/65.jpg',
+	squareSpaceUrl + '1562102954919-4D1IRIMFNWQFO1G0F37Q/66.jpg',
+	squareSpaceUrl + '1562102954838-L03XRKMVYF8Z59TTW66S/67.jpg'
+]
+
+const sizes = [500, 750, 1000, 1500, 2500]
+
+const getUrlWithSize = (url: string, size: number) => `${url}?format=${size}w`
+const getSrcSetItem = (urlWithSize: string, size: number) => `${urlWithSize} ${size}w`
+const getSrcSet = (srcSetItems: string[]) => srcSetItems.join(', ')
+
+const getSrcAttr = (url: string) => {
+	const srcItems = sizes
+	.map((size) => {
+		const urlWithSize = getUrlWithSize(url, size)
+		return getSrcSetItem(urlWithSize, size)
+	})
+	return getSrcSet(srcItems)
+}
+
 ---
 
 <MyLayout
 	title="Piotr Łosiniecki: Janusz Soft"
 	description="Strona firmowa Janusz Soft"
 >
-	<h2>Peaks</h2>
+	<section class="header-section">
+		<h2>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+			incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+			exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+		</h2>
+	</section>
+	<section class="img-section">
+		{
+			images.map((image) => (
+				<img
+					srcset={getSrcAttr(image)}
+					alt={''}
+					loading="lazy"
+					decoding="async"
+				></img>
+			))
+		}
+	</section>
 </BaseLayout>
 
 <style>
+	.header-section {
+		min-height: 60vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
 
+	h2 {
+		font-size: var(--text-lg);
+		font-weight: 500;
+		line-height: calc(1.5*var(--text-lg));
+		text-align: center;
+
+		margin: var(--text-5xl) 0 var(--text-5xl) 0;
+	}
+
+	.img-section {
+		display: flex;
+		flex-direction: column;
+		gap: var(--text-base);
+	}
 </style>
