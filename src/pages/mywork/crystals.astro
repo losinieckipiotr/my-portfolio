@@ -1,14 +1,25 @@
 ---
 import MyLayout from '../../layouts/MyLayout.astro';
+import WorkLayout from '../../layouts/WorkLayout.astro';
+
+const index = 6;
+const images = [
+	'1562711028613-KPB6JJZAWCM4GARBNC9E/77.jpg',
+	'1562169096860-7TV7NLXKAH7GMEEAM0TY/84.jpg',
+	'1562169096837-H834GYE9HBJ13JUY4PP6/93.jpg',
+];
 ---
 
 <MyLayout
 	title="Piotr Łosiniecki: Janusz Soft"
 	description="Strona firmowa Janusz Soft"
 >
-	<h2>Crystals</h2>
+	<WorkLayout
+		index={index}
+		images={images}
+	>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	</WorkLayout>
 </BaseLayout>
-
-<style>
-
-</style>

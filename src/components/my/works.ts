@@ -1,7 +1,5 @@
 import { getSrcAttr } from "./srcAttr.helper";
 
-const squareSpaceUrl = 'https://images.squarespace-cdn.com/content/v1/5cdc8db64d546e01b837cea4/';
-
 const peaks = '1562102954840-OPQ2S3VR9JDZS2XLMAAT/65.jpg';
 const coast = '1562710303726-HN4N2S110UN9FFW6SQ9K/1.jpg';
 const wildlife = '1562710337910-ETNNKGNBU2IPDFJFZAC7/3.jpg';
@@ -20,11 +18,11 @@ class Work {
 	constructor (title: string, path: string, imgUrl: string) {
 		this.title = title;
 		this.href = '/my-portfolio/mywork/' + path
-		this.srcset = getSrcAttr(squareSpaceUrl + imgUrl, [500, 750])
+		this.srcset = getSrcAttr(imgUrl, [500, 750])
 	}
 }
 
-interface ImgData {
+export interface ImgData {
 	title: string;
 	href: string;
 	srcset?: string;
@@ -51,14 +49,14 @@ class WroksBuilder {
 
 const builder = new WroksBuilder();
 
-export const works = builder
+export const works: Readonly<ImgData[]> = builder
 	.addWork(new Work('Pagóry', 'peaks', peaks))
 	.addWork(new Work('Piaseczki', 'coast', coast))
 	.addWork(new Work('Dziki źwież', 'wildlife', wildlife))
 	.addWork(new Work('Parawany', 'seafaring', seafaring))
-	.addWork(new Work('Dowód że ziemia jest płaska', 'horizon', horizon))
-	.addWork(new Work('Rodzinne strony James\'a Bonda', 'landscape', landscape))
+	.addWork(new Work('Płaska ziemia', 'horizon', horizon))
+	.addWork(new Work('Rodzinne strony Bonda', 'landscape', landscape))
 	.addWork(new Work('Planeta z Interstellar', 'crystals', crystals))
 	.addWork(new Work('Schody do wody', 'wharf', wharf))
 	.addWork(new Work('Łoweczki', 'dock', dock))
-	.build()
+	.build();

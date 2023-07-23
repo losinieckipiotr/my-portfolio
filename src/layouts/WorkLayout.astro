@@ -1,0 +1,116 @@
+---
+import { getSrcAttr } from '../components/my/srcAttr.helper';
+import { works, ImgData } from '../components/my/works'
+import Icon from '../components/Icon.astro'
+
+interface Props {
+	index: number;
+	images: string[];
+}
+
+const { index, images } = Astro.props;
+
+const prevWork: ImgData | undefined = works[index - 1]
+const nextWork: ImgData | undefined = works[index + 1]
+---
+
+<section class="header">
+  <h2><slot /></h2>
+</section>
+<section class="img">
+  {
+    images.map((image) => (
+      <img
+        srcset={getSrcAttr(image)}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      ></img>
+    ))
+  }
+</section>
+<section class="pagination">
+  {!!nextWork &&
+    <a class="next" href={nextWork.href}>
+      <span>{nextWork.title}</span>
+    	<span class="icon"><Icon icon="arrow-right" size="2em" /></span>
+  	</a>
+  }
+  {
+    !!prevWork &&
+    <a class="prev" href={prevWork.href}>
+      <span class="icon"><Icon icon="arrow-left" size="2em" /></span>
+      <span>{prevWork.title}</span>
+    </a>
+  }
+</section>
+
+<style>
+	.header {
+		min-height: 60vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		& h2 {
+			font-size: var(--text-lg);
+			font-weight: 500;
+			line-height: calc(1.5*var(--text-lg));
+			text-align: center;
+		}
+	}
+
+	.img {
+		display: flex;
+		flex-direction: column;
+		gap: var(--text-base);
+	}
+
+	.pagination {
+		display: flex;
+		flex-direction: row-reverse;
+		margin-top: var(--text-md);
+		margin-bottom: var(--text-5xl);
+
+		& a {
+			display: flex;
+			font-size: var(--text-md);
+			font-weight: 500;
+			text-decoration: none;
+			align-items: center;
+
+			&.prev {
+				flex: 1;
+
+				& span {
+					margin-right: var(--text-sm);
+				}
+			}
+
+			&.next span {
+				margin-left: var(--text-sm);
+			}
+		}
+	}
+
+	@media (min-width: 600px) {
+		.header {
+			display: grid;
+			align-items: center;
+			grid-template-columns: repeat(12, 1fr);
+			column-gap: var(--text-lg);
+		}
+
+		h2 {
+			font-size: var(--text-xl);
+			line-height: calc(1.5*var(--text-xl));
+			grid-column: 2 / 12;
+		}
+	}
+
+	@media (min-width: 1280px) {
+		h2 {
+			grid-column: 3 / 11;
+		}
+	}
+</style>
