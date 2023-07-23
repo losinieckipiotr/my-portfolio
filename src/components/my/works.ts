@@ -56,7 +56,7 @@ export const works: Readonly<ImgData[]> = builder
 	.addWork(new Work('Parawany', 'seafaring', seafaring))
 	.addWork(new Work('Płaska ziemia', 'horizon', horizon))
 	.addWork(new Work('Rodzinne strony Bonda', 'landscape', landscape))
-	.addWork(new Work('Planeta z Interstellar', 'crystals', crystals))
+	.addWork(new Work('Interstellar', 'crystals', crystals))
 	.addWork(new Work('Schody do wody', 'wharf', wharf))
 	.addWork(new Work('Łoweczki', 'dock', dock))
 	.build();

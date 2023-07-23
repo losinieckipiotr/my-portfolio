@@ -15,7 +15,9 @@ const nextWork: ImgData | undefined = works[index + 1]
 ---
 
 <section class="header">
-  <h2><slot /></h2>
+  <h2>
+		<slot />
+	</h2>
 </section>
 <section class="img">
   {
@@ -33,13 +35,13 @@ const nextWork: ImgData | undefined = works[index + 1]
   {!!nextWork &&
     <a class="next" href={nextWork.href}>
       <span>{nextWork.title}</span>
-    	<span class="icon"><Icon icon="arrow-right" size="2em" /></span>
+    	<span class="icon"><Icon icon="arrow-right" size="1.5em" /></span>
   	</a>
   }
   {
     !!prevWork &&
     <a class="prev" href={prevWork.href}>
-      <span class="icon"><Icon icon="arrow-left" size="2em" /></span>
+      <span class="icon"><Icon icon="arrow-left" size="1.5em" /></span>
       <span>{prevWork.title}</span>
     </a>
   }
@@ -122,7 +124,7 @@ const nextWork: ImgData | undefined = works[index + 1]
 
 		& a {
 			display: flex;
-			font-size: var(--text-md);
+			font-size: var(--text-sm);
 			font-weight: 500;
 			text-decoration: none;
 			align-items: center;
@@ -147,18 +149,30 @@ const nextWork: ImgData | undefined = works[index + 1]
 			align-items: center;
 			grid-template-columns: repeat(12, 1fr);
 			column-gap: var(--text-lg);
+
+			& h2 {
+				font-size: var(--text-xl);
+				line-height: calc(1.5*var(--text-xl));
+				grid-column: 2 / 12;
+			}
 		}
 
-		h2 {
-			font-size: var(--text-xl);
-			line-height: calc(1.5*var(--text-xl));
-			grid-column: 2 / 12;
+		.img {
+			gap: var(--text-md);
+		}
+
+		.pagination a {
+			font-size: var(--text-md);
 		}
 	}
 
 	@media (min-width: 1280px) {
-		h2 {
+		.header h2 {
 			grid-column: 3 / 11;
+		}
+
+		.img {
+			gap: var(--text-lg);
 		}
 	}
 </style>
